@@ -1,53 +1,32 @@
 import React from 'react';
 import styles from './CohortDetails.module.css';
+import { CohortsData } from './Cohort';
 
 const CohortDetails = () => {
-  const cohorts = [
-    {
-      name: "INTADMDF10 - .NET FSD",
-      startDate: "22-Feb-2022",
-      status: "Scheduled",
-      coach: "Aathma",
-      trainer: "Jojo Jose"
-    },
-    {
-      name: "ADM21JF014 - Java FSD",
-      startDate: "10-Sep-2021",
-      status: "Ongoing",
-      coach: "Apoorv",
-      trainer: "Elisa Smith"
-    },
-    {
-      name: "CDBJF21025 - Java FSD",
-      startDate: "24-Dec-2021",
-      status: "Ongoing",
-      coach: "Aathma",
-      trainer: "John Doe"
-    }
-  ];
-
-  const getTitleStyle = (status) => ({
-    color: status === "Ongoing" ? "green" : "blue"
-  });
-
   return (
     <div>
       <h2>Cohorts Details</h2>
-      {cohorts.map((cohort, index) => (
-        <div key={index} className={styles.box}>
-          <h3 style={getTitleStyle(cohort.status)}>{cohort.name}</h3>
-          <dl>
-            <dt>Started On</dt>
-            <dd>{cohort.startDate}</dd>
-            <dt>Current Status</dt>
-            <dd>{cohort.status}</dd>
-            <dt>Coach</dt>
-            <dd>{cohort.coach}</dd>
-            <dt>Trainer</dt>
-            <dd>{cohort.trainer}</dd>
-          </dl>
-        </div>
-      ))}
+      {CohortsData.map((cohort, index) => {
+        const isOngoing = cohort.currentStatus.toLowerCase() === 'ongoing';
+
+        return (
+          <div key={index} className={styles.box}>
+            <h3 style={{ color: isOngoing ? 'green' : 'blue' }}>
+              {cohort.cohortCode} - {cohort.technology}
+            </h3>
+            <dl>
+              <dt>Started On</dt>
+              <dd>{cohort.startDate}</dd>
+              <dt>Current Status</dt>
+              <dd>{cohort.currentStatus}</dd>
+              <dt>Coach</dt>
+              <dd>{cohort.coachName}</dd>
+              <dt>Trainer</dt>
+              <dd>{cohort.trainerName}</dd>
+            </dl>
+          </div>
+        );
+      })}
     </div>
   );
 };
