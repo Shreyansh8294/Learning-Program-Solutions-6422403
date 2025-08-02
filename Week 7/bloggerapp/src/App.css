@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px;
+}
+
+.section {
+  flex: 1;
+  padding: 20px;
+  border-left: 4px solid green;
+}
+
+.section:first-child {
+  border-left: none;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin: 0.5rem 0;
+}
